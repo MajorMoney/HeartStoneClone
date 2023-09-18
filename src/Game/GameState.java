@@ -1,3 +1,10 @@
+package Game;
+
+import GameObjects.Board;
+import GameObjects.Cards.Card;
+import Main.Main;
+import PlayerActions.PlayerDraggableAction;
+
 import java.awt.*;
 
 public class GameState {
@@ -6,10 +13,14 @@ public class GameState {
     private GameObjectMapper objectMap;
     private int screenHeight;
     private int screenWidth;
+    private Board board;
+    private int currentPlayer;
 
     private GameState(){
-        this.objectMap = new GameObjectMapper();
         setFullScreenHeightAndWidth();
+        objectMap = new GameObjectMapper();
+        board = new Board(275,200,screenWidth,screenHeight);
+        currentPlayer =1;
         startGame();
         }
 
@@ -38,24 +49,42 @@ public class GameState {
         return objectMap;
     }
 
-    public int getScreenHeight() {
-        return screenHeight;
-    }
+    public Board getBoard() {
+        return board;
 
+    }
     public int getScreenWidth() {
         return screenWidth;
     }
 
-    public void startGame(){
-        GameObject card = new Card(this.screenWidth/2,this.screenHeight,200,200,"test");
-        objectMap.gameObjects.add(card);
+    public int getScreenHeight() {
+        return screenHeight;
     }
 
-    public void handlePlayerAction(PlayerAction pa){
-        if(pa.validate()){
-            pa.resolve();
-        }
+    public int getCurrentPlayer() {
+        return currentPlayer;
     }
+
+    public void startGame(){
+        Card card1 = new Card(screenWidth/2+300,screenHeight,200,200,"test");
+        Card card2 = new Card(screenWidth/2,screenHeight,200,200,"test");
+        Card card3 = new Card(screenWidth/2-300,screenHeight,200,200,"test");
+
+        objectMap.cards.add(card1);
+        objectMap.cards.add(card2);
+        objectMap.cards.add(card3);
+    }
+
+
+    public void handlePlayerAction(PlayerDraggableAction pa){
+        pa.resolve(pa.validate());
+    }
+
+    public void playCard(Card card,Point destination){
+        board.addCard(card,destination, currentPlayer);
+    }
+
+
 
 }
 

@@ -1,5 +1,8 @@
+package GameObjects.Cards;
+
+import GameObjects.GameObject;
+
 import java.awt.*;
-import java.io.IOException;
 
 public class Card extends GameObject {
 

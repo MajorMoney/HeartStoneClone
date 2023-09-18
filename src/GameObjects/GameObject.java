@@ -1,3 +1,5 @@
+package GameObjects;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,7 +43,7 @@ public abstract class GameObject {
     }
 
 
-    public void draw(Graphics2D g2d  ) throws IOException {
+    public void draw(Graphics2D g2d  )  {
 
         // Scale the image to the desired dimensions
         Image scaledImage =  img.getScaledInstance( width, height, Image.SCALE_SMOOTH);
@@ -56,7 +58,7 @@ public abstract class GameObject {
 
     @Override
     public String toString() {
-        return "GameObject{" +
+        return "GameObjects.GameObject{" +
                 "x=" + location.x +
                 ", y=" + location.y +
                 ", height=" + height +

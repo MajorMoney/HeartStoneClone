@@ -1,3 +1,9 @@
+package Main;
+
+import GUI.BoardBackground;
+import GUI.GamePanel;
+import Game.GameState;
+
 import javax.swing.*;
 
 public class Main {
@@ -13,7 +19,7 @@ public class Main {
 
         GameState gameState = GameState.getInstance();
 
-        BoardBackground board = new BoardBackground();
+        BoardBackground board = new BoardBackground(window);
         GamePanel gamePanel = new GamePanel(gameState);
         board.add(gamePanel);
         window.add(board);

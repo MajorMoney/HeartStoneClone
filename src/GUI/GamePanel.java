@@ -1,6 +1,12 @@
+package GUI;
+
+import Game.GameState;
+import Game.MouseHandler;
+import PlayerActions.PlayerDraggableAction;
+import GameObjects.Cards.Card;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 
 public class GamePanel extends JPanel implements Runnable{
@@ -16,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.gameState=gameState;
         screenWidth=gameState.getScreenWidth();
         screenHeight=gameState.getScreenHeight();
-        this.mouse =  new MouseHandler(this,gameState.getObjectMap());
+        this.mouse =  new MouseHandler(this,gameState);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setOpaque(false);
         this.setDoubleBuffered(true);
@@ -40,12 +46,12 @@ public class GamePanel extends JPanel implements Runnable{
 
         this.revalidate();
         while (gameThread != null){
-            update();
+            //update();
             repaint();
         }
     }
 
-    public void handleAction(PlayerAction pa){
+    public void handleAction(PlayerDraggableAction pa){
         gameState.handlePlayerAction(pa);
     }
 
@@ -58,18 +64,23 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+        gameState.getObjectMap().cards.forEach((card -> card.draw(g2)));
 
-        gameState.getObjectMap().gameObjects.forEach((gameObject -> {
-            try {
-                gameObject.draw(g2);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }));
-        g.drawString(mouse.getMsg(), mouse.getMouse_x(), mouse.getMouse_y());
+        gameState.getBoard().drawBoardCards(g2);
+
         g2.setColor(Color.ORANGE);
         g2.setStroke(new BasicStroke(2));
         g2.drawRect(275,200,this.screenWidth-575,this.screenHeight/2);
+        for(int i=0;i<7;i++){
+            g2.drawRect(gameState.getBoard().getLocation().x+(gameState.getBoard().getWidth()/7)*i,
+                    gameState.getBoard().getLocation().y,gameState.getBoard().getWidth()/7,
+                    gameState.getBoard().getHeight()/2);
+        }
+        for(int i=0;i<7;i++){
+            g2.drawRect(gameState.getBoard().getLocation().x+(gameState.getBoard().getWidth()/7)*i,
+                    gameState.getBoard().getLocation().y+gameState.getBoard().getHeight()/2,gameState.getBoard().getWidth()/7,
+                    gameState.getBoard().getHeight()/2);
+        }
         g2.drawRect(this.screenWidth/2-50,this.screenHeight-100,100,200);
     }
 

@@ -1,3 +1,10 @@
+package Game;
+
+import GameObjects.Cards.Card;
+import PlayerActions.Attack;
+import PlayerActions.PlayCard;
+import PlayerActions.PlayerDraggableAction;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -5,30 +12,24 @@ import java.awt.event.MouseMotionListener;
 
 public class MouseHandler implements MouseListener, MouseMotionListener {
 
-    private String msg;
-
     private int mouse_x,mouse_y;
-    private Component target;
-    private GameObjectMapper objectMap;
+    private boolean isInBoard;
 
-    private Point startingPoint;
     private Point targetObjectStartingPoint;
-    private GameObject targetObject;
+
+    private Component target;
+    private GameState gs;
+    private Card targetObject;
 
 
-    public MouseHandler(Component c,GameObjectMapper objectMap){
+    public MouseHandler(Component c,GameState gs){
         target=c;
         mouse_x=0;
         mouse_y=0;
-        msg="";
-        startingPoint=null;
         targetObject = null;
-        this.objectMap = objectMap;
+        this.gs = gs;
     }
 
-    public String getMsg() {
-        return msg;
-    }
 
     public int getMouse_x() {
         return mouse_x;
@@ -45,22 +46,32 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        startingPoint = new Point(e.getX(),e.getY());
-        targetObject=objectMap.getObjectAt(startingPoint.x,startingPoint.y);
-        if(targetObject!=null)
-            targetObjectStartingPoint = targetObject.getLocation();
+        targetObject=gs.getObjectMap().getObjectAt(e.getX(),e.getY());
+        if(targetObject!=null) {
+            Point objectLocation=targetObject.getLocation();
+            targetObjectStartingPoint = new Point(objectLocation.x, objectLocation.y);
+            if (gs.getBoard().isWithinBounds(targetObjectStartingPoint.x, targetObjectStartingPoint.y))
+                isInBoard = true;
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("MouseReleased");
+        if(targetObject!=null) {
+            PlayerDraggableAction action;
+            if(!isInBoard)
+                action = new PlayCard(targetObject,targetObjectStartingPoint,e.getPoint(),gs);
+            else
+                action = new Attack();
+        gs.handlePlayerAction(action);
+        }
+        isInBoard = false;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         mouse_x=e.getX();
         mouse_y=e.getY();
-        msg="Mouse Entered";
         target.repaint();
     }
 
@@ -68,15 +79,14 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mouseExited(MouseEvent e) {
         mouse_x=e.getX();
         mouse_y=e.getY();
-        msg="Mouse Exited";
         target.repaint();
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
 
-        if(targetObject != null){
-            targetObject.location.move(e.getPoint().x,e.getPoint().y);
+        if(targetObject != null && !isInBoard){
+            targetObject.getLocation().move(e.getPoint().x,e.getPoint().y);
         }
         target.repaint();
     }
@@ -85,7 +95,6 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
         mouse_x=e.getX();
         mouse_y=e.getY();
-        msg="Moving mouse at "+mouse_x+","+mouse_y;
         target.repaint();
     }
 

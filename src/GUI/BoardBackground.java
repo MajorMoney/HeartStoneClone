@@ -1,3 +1,8 @@
+package GUI;
+
+
+import com.sun.tools.javac.Main;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +15,10 @@ public class BoardBackground extends JPanel {
     private int screenWidth ;
     private int screenHeight ;
     private BufferedImage background;
+    private JFrame window;
 
-    public BoardBackground(){
+    public BoardBackground(JFrame window){
+        this.window=window;
         this.setFullScreenHeightAndWidth();
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -30,10 +37,10 @@ public class BoardBackground extends JPanel {
 
     public void setFullScreenHeightAndWidth(){
         GraphicsDevice gd =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        gd.setFullScreenWindow(Main.window);
+        gd.setFullScreenWindow(window);
 
-        screenHeight=Main.window.getHeight();
-        screenWidth=Main.window.getWidth();
+        screenHeight= window.getHeight();
+        screenWidth= window.getWidth();
     }
 
     public void paintComponent(Graphics g ) {
