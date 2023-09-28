@@ -1,5 +1,4 @@
 package Main;
-
 import GUI.BoardBackground;
 import GUI.GamePanel;
 import Game.GameState;
