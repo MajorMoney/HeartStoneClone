@@ -2,7 +2,8 @@ package Game;
 
 import GameObjects.Board;
 import GameObjects.Cards.Card;
-import Main.Main;
+import GameObjects.Cards.CardFactory;
+import GameObjects.Cards.Minions.Minion;
 import PlayerActions.PlayerDraggableAction;
 
 import java.awt.*;
@@ -39,10 +40,10 @@ public class GameState {
 
     public void setFullScreenHeightAndWidth(){
         GraphicsDevice gd =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        gd.setFullScreenWindow(Main.window);
+        gd.setFullScreenWindow(Main.Main.window);
 
-        this.screenHeight=Main.window.getHeight();
-        this.screenWidth=Main.window.getWidth();
+        this.screenHeight=Main.Main.window.getHeight();
+        this.screenWidth=Main.Main.window.getWidth();
     }
 
     public GameObjectMapper getObjectMap() {
@@ -66,9 +67,13 @@ public class GameState {
     }
 
     public void startGame(){
-        Card card1 = new Card(screenWidth/2+300,screenHeight,200,200,"test");
-        Card card2 = new Card(screenWidth/2,screenHeight,200,200,"test");
-        Card card3 = new Card(screenWidth/2-300,screenHeight,200,200,"test");
+        CardFactory cardFactory = new CardFactory();
+
+        cardFactory.getCardById(2);
+
+        Card card1 = new Minion(screenWidth/2+300,screenHeight,200,200,"test",5, null);
+        Card card2 = new Minion(screenWidth/2,screenHeight,200,200,"test",5, null);
+        Card card3 = new Minion(screenWidth/2-300,screenHeight,200,200,"test",5, null);
 
         objectMap.cards.add(card1);
         objectMap.cards.add(card2);

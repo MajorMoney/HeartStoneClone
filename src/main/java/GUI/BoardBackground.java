@@ -1,13 +1,12 @@
 package GUI;
 
 
-import com.sun.tools.javac.Main;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class BoardBackground extends JPanel {
@@ -24,7 +23,8 @@ public class BoardBackground extends JPanel {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setFocusable(true);
         try {
-            background = ImageIO.read(new File("Board.jpg"));
+
+            background = ImageIO.read(this.getClass().getClassLoader().getResource("BoardImages/Board.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

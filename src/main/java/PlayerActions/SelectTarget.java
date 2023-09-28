@@ -2,9 +2,9 @@ package PlayerActions;
 
 import PlayerActions.PlayerDraggableAction;
 
-public class Attack extends PlayerDraggableAction {
+public class SelectTarget extends PlayerDraggableAction {
 
-    public Attack(){
+    public SelectTarget(){
 
     }
 

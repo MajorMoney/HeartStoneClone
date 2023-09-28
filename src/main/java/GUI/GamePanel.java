@@ -2,8 +2,8 @@ package GUI;
 
 import Game.GameState;
 import Game.MouseHandler;
-import PlayerActions.PlayerDraggableAction;
 import GameObjects.Cards.Card;
+import PlayerActions.PlayerDraggableAction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +13,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     private int screenHeight;
     private int screenWidth;
+    private SelectingArrow selectingArrow;
 
     private MouseHandler mouse ;
     private Thread gameThread;
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.gameState=gameState;
         screenWidth=gameState.getScreenWidth();
         screenHeight=gameState.getScreenHeight();
+        selectingArrow = null;
         this.mouse =  new MouseHandler(this,gameState);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setOpaque(false);
@@ -29,12 +31,20 @@ public class GamePanel extends JPanel implements Runnable{
         this.addMouseListener(mouse);
         this.addMouseMotionListener(mouse);
         this.setFocusable(true);
+    }
 
+    public boolean isSelectingTarget() {
+        return selectingArrow != null;
+    }
 
-
+    public SelectingArrow getSelectingArrow() {
+        return selectingArrow;
     }
 
 
+    public void setSelectingArrow(SelectingArrow selectingArrow) {
+        this.selectingArrow = selectingArrow;
+    }
 
     public void startGameThread(){
         gameThread =new Thread(this);
@@ -64,7 +74,9 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        gameState.getObjectMap().cards.forEach((card -> card.draw(g2)));
+        gameState.getObjectMap().cards.forEach( card -> {
+            card.draw(g2);
+        });
 
         gameState.getBoard().drawBoardCards(g2);
 
@@ -81,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable{
                     gameState.getBoard().getLocation().y+gameState.getBoard().getHeight()/2,gameState.getBoard().getWidth()/7,
                     gameState.getBoard().getHeight()/2);
         }
+        if(isSelectingTarget())
+            selectingArrow.drawArrow(g2);
         g2.drawRect(this.screenWidth/2-50,this.screenHeight-100,100,200);
     }
 
