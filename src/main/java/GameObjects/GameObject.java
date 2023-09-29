@@ -13,6 +13,7 @@ public abstract class GameObject {
     protected BufferedImage img;
 
 
+/*
     public GameObject(int x, int y, int width, int height, String file) {
         location = new Point(x, y);
         this.width = width;
@@ -23,9 +24,14 @@ public abstract class GameObject {
             ioe.printStackTrace();
         }
     }
+*/
 
     public Point getLocation() {
         return location;
+    }
+
+    public void setLocation(Point location) {
+        this.location = location;
     }
 
     public int getHeight() {

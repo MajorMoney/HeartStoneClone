@@ -67,13 +67,16 @@ public class GameState {
     }
 
     public void startGame(){
-        CardFactory cardFactory = new CardFactory();
+        CardFactory cardFactory = new CardFactory(-1000,-1000,200,200);
 
-        cardFactory.getCardById(2);
 
-        Card card1 = new Minion(screenWidth/2+300,screenHeight,200,200,"test",5, null);
-        Card card2 = new Minion(screenWidth/2,screenHeight,200,200,"test",5, null);
-        Card card3 = new Minion(screenWidth/2-300,screenHeight,200,200,"test",5, null);
+        Card card1 = cardFactory.getCard(1);
+        Card card2 = cardFactory.getCard(2);
+        Card card3 = cardFactory.getCard(3);
+
+        card1.setLocation(new Point(screenWidth/2+300,screenHeight));
+        card2.setLocation(new Point(screenWidth/2, screenHeight));
+        card3.setLocation(new Point(screenWidth/2-300, screenHeight));
 
         objectMap.cards.add(card1);
         objectMap.cards.add(card2);

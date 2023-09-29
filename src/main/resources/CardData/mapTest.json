@@ -1,41 +1,40 @@
-[
-  {
-      "id": 1,
-      "attack": 5,
-      "health": 7,
-      "mana": 4,
-      "text": "Card 1",
-      "cardClass": "Warrior",
-      "set": "Basic",
-      "effect": {
-        "name": "Effect 1",
-        "description": "This effect does something special for Card 1"
-      }
+{
+  "1": {
+    "attack": 3,
+    "health": 6,
+    "mana": 4,
+    "name": "Nome2",
+    "cardClass": "WARRIOR",
+    "set": "Basic",
+    "effect": {
+      "name": "Effect 1",
+      "description": "This effect does something special for Card 1"
+    }
   },
-  {
-      "id": 2,
-      "attack": 3,
-      "health": 6,
-      "mana": 3,
-      "text": "Card 2",
-      "cardClass": "Mage",
-      "set": "Basic",
-      "effect": {
-        "name": "Effect 2",
-        "description": "This effect does something special for Card 2"
-      }
+  "2":{
+    "attack": 3,
+    "health": 6,
+    "mana": 4,
+    "name": "Nome2",
+    "text": "Card 2",
+    "cardClass": "MAGE",
+    "set": "Basic",
+    "effect": {
+      "name": "Effect 2",
+      "description": "This effect does something special for Card 2"
+    }
   },
-  {
-      "id": 3,
-      "attack": 6,
-      "health": 5,
-      "mana": 5,
-      "text": "Card 3",
-      "cardClass": "Rogue",
-      "set": "Classic",
-      "effect": {
-        "name": "Effect 3",
-        "description": "This effect does something special for Card 3"
-      }
+  "3": {
+    "attack": 6,
+    "health": 5,
+    "mana": 5,
+    "name": "Nome3",
+    "text": "Card 3",
+    "cardClass": "ROGUE",
+    "set": "Classic",
+    "effect": {
+      "name": "Effect 3",
+      "description": "This effect does something special for Card 3"
+    }
   }
-]
+}
