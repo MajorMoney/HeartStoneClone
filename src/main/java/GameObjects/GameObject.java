@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+//TODO Delete and Refactor Card* Change package Cards to root
 public abstract class GameObject {
 
     protected Point location;

@@ -8,10 +8,7 @@ import lombok.Data;
 public class CardProperties {
 
     private Integer attack,health,mana;
-    private String name,text,cardClass,set;
+    private String type,name,text,cardClass,set;
     private Effect effect;
-
-
-
 
 }

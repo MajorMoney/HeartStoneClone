@@ -2,8 +2,8 @@ package Game;
 
 import GameObjects.Board;
 import GameObjects.Cards.Card;
-import GameObjects.Cards.CardFactory;
-import GameObjects.Cards.Minions.Minion;
+import GameObjects.Cards.CardPropertiesImporter;
+import Player.*;
 import PlayerActions.PlayerDraggableAction;
 
 import java.awt.*;
@@ -11,6 +11,7 @@ import java.awt.*;
 public class GameState {
 
     private static volatile GameState instance;
+
     private GameObjectMapper objectMap;
     private int screenHeight;
     private int screenWidth;
@@ -22,7 +23,6 @@ public class GameState {
         objectMap = new GameObjectMapper();
         board = new Board(275,200,screenWidth,screenHeight);
         currentPlayer =1;
-        startGame();
         }
 
     public static GameState getInstance(){
@@ -39,11 +39,33 @@ public class GameState {
     }
 
     public void setFullScreenHeightAndWidth(){
-        GraphicsDevice gd =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        gd.setFullScreenWindow(Main.Main.window);
+//        GraphicsDevice gd =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+//        gd.setFullScreenWindow(GameStart.window);
 
-        this.screenHeight=Main.Main.window.getHeight();
-        this.screenWidth=Main.Main.window.getWidth();
+        this.screenHeight = GameStart.window.getHeight();
+        this.screenWidth = GameStart.window.getWidth();
+    }
+
+    public void startGameLogic(){
+        CardPropertiesImporter cpi = new CardPropertiesImporter(-1000,-1000,200,200);
+
+        //TODO make actual deck importation
+        Player player1 = new Player(cpi,objectMap);
+
+        player1.init();
+
+        for(Card c : player1.getHand()){
+            System.out.println(c);
+        }
+
+        player1.draw();
+        System.out.println("TODO add objectMapper / hand / board connectionx");
+
+
+//
+//        card1.setLocation(new Point(screenWidth/2+300,screenHeight));
+//        card2.setLocation(new Point(screenWidth/2, screenHeight));
+//        card3.setLocation(new Point(screenWidth/2-300, screenHeight));
     }
 
     public GameObjectMapper getObjectMap() {
@@ -54,6 +76,7 @@ public class GameState {
         return board;
 
     }
+
     public int getScreenWidth() {
         return screenWidth;
     }
@@ -66,22 +89,7 @@ public class GameState {
         return currentPlayer;
     }
 
-    public void startGame(){
-        CardFactory cardFactory = new CardFactory(-1000,-1000,200,200);
 
-
-        Card card1 = cardFactory.getCard(1);
-        Card card2 = cardFactory.getCard(2);
-        Card card3 = cardFactory.getCard(3);
-
-        card1.setLocation(new Point(screenWidth/2+300,screenHeight));
-        card2.setLocation(new Point(screenWidth/2, screenHeight));
-        card3.setLocation(new Point(screenWidth/2-300, screenHeight));
-
-        objectMap.cards.add(card1);
-        objectMap.cards.add(card2);
-        objectMap.cards.add(card3);
-    }
 
 
     public void handlePlayerAction(PlayerDraggableAction pa){

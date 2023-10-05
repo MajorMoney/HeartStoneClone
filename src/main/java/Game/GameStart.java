@@ -1,11 +1,10 @@
-package Main;
+package Game;
 import GUI.BoardBackground;
 import GUI.GamePanel;
-import Game.GameState;
 
 import javax.swing.*;
 
-public class Main {
+public class GameStart {
 
     public static JFrame window;
     public static void main(String[] args)
@@ -15,18 +14,20 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setTitle("HeartStoneClone");
+        window.setVisible(true);
+
+        //TODO Make BoardBackgroud recive JFrame measures instead of the Jframe object
+        BoardBackground board = new BoardBackground(window);
 
         GameState gameState = GameState.getInstance();
-
-        BoardBackground board = new BoardBackground(window);
         GamePanel gamePanel = new GamePanel(gameState);
+
         board.add(gamePanel);
         window.add(board);
         window.pack();
 
         gamePanel.startGameThread();
-
-        window.setVisible(true);
+        gameState.startGameLogic();
     }
 
 }

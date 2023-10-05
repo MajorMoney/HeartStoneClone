@@ -1,9 +1,10 @@
 {
   "1": {
+    "type": "Minion",
     "attack": 3,
     "health": 6,
     "mana": 4,
-    "name": "Nome2",
+    "name": "1",
     "cardClass": "WARRIOR",
     "set": "Basic",
     "effect": {
@@ -12,10 +13,11 @@
     }
   },
   "2":{
+    "type": "Minion",
     "attack": 3,
     "health": 6,
     "mana": 4,
-    "name": "Nome2",
+    "name": "2",
     "text": "Card 2",
     "cardClass": "MAGE",
     "set": "Basic",
@@ -25,10 +27,11 @@
     }
   },
   "3": {
+    "type": "Minion",
     "attack": 6,
     "health": 5,
     "mana": 5,
-    "name": "Nome3",
+    "name": "3",
     "text": "Card 3",
     "cardClass": "ROGUE",
     "set": "Classic",

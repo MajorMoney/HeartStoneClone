@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+
+//TODO Make BoardBackgroud recive JFrame measures instead of the Jframe object
 public class BoardBackground extends JPanel {
 
     private int screenWidth ;

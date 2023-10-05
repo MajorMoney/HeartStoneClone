@@ -1,6 +1,7 @@
 package GameObjects.Cards;
 
 
+import GameObjects.Cards.Effects.Effect;
 import GameObjects.GameObject;
 
 import javax.imageio.ImageIO;
@@ -21,15 +22,18 @@ public abstract class Card extends GameObject {
 
 
     protected int manaCost;
+    protected String name,text;
     protected CardClass cardClass;
+    protected Effect effect;
 
-    public Card(int x, int y, int width, int height, CardProperties cp,int id) {
+    public Card(int x, int y, int width, int height, CardProperties cp) {
         location = new Point(x, y);
         this.width = width;
         this.height = height;
-
+        this.text = cp.getText();
+        this.name= cp.getName();
         try {
-            img = ImageIO.read(this.getClass().getClassLoader().getResource("CardImages/"+ id +".png"));
+            img = ImageIO.read(this.getClass().getClassLoader().getResource("CardImages/"+ name +".png"));
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
