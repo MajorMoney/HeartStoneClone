@@ -20,7 +20,7 @@ public class GameState {
 
     private GameState(){
         setFullScreenHeightAndWidth();
-        objectMap = new GameObjectMapper();
+        objectMap = new GameObjectMapper( screenHeight, screenWidth);
         board = new Board(275,200,screenWidth,screenHeight);
         currentPlayer =1;
         }
@@ -52,20 +52,23 @@ public class GameState {
         //TODO make actual deck importation
         Player player1 = new Player(cpi,objectMap);
 
-        player1.init();
 
-        for(Card c : player1.getHand()){
-            System.out.println(c);
+//        for(Card c : player1.getHand()){
+//            System.out.println(c);
+//        }
+
+        try {
+            player1.draw();
+            Thread.sleep(3000);
+            player1.draw();
+            Thread.sleep(3000);
+            player1.draw();
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
-        player1.draw();
         System.out.println("TODO add objectMapper / hand / board connectionx");
 
-
-//
-//        card1.setLocation(new Point(screenWidth/2+300,screenHeight));
-//        card2.setLocation(new Point(screenWidth/2, screenHeight));
-//        card3.setLocation(new Point(screenWidth/2-300, screenHeight));
     }
 
     public GameObjectMapper getObjectMap() {
@@ -90,6 +93,9 @@ public class GameState {
     }
 
 
+    public void drawHand(){
+
+    }
 
 
     public void handlePlayerAction(PlayerDraggableAction pa){

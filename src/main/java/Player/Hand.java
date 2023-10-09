@@ -5,7 +5,7 @@ import GameObjects.Cards.CardProperties;
 
 import java.util.ArrayList;
 
-public class Hand extends IncrementTurn {
+public class Hand {
 
     private ArrayList<Card> hand;
 
@@ -17,11 +17,6 @@ public class Hand extends IncrementTurn {
         hand.add(card);
     }
 
-    @Override
-    public Card increment() {
-
-        return null;
-    }
 
 
     public ArrayList<Card> getHand() {

@@ -79,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
         });
 
         gameState.getBoard().drawBoardCards(g2);
+        gameState.getObjectMap().drawCards(g2);
 
         g2.setColor(Color.ORANGE);
         g2.setStroke(new BasicStroke(2));
