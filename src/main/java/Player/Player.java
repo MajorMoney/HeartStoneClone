@@ -4,7 +4,6 @@ import Game.GameObjectMapper;
 import GameObjects.Cards.Card;
 import GameObjects.Cards.CardProperties;
 import GameObjects.Cards.CardPropertiesImporter;
-
 import java.util.ArrayList;
 import java.util.List;
 

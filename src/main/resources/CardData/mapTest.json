@@ -12,12 +12,12 @@
       "description": "This effect does something special for Card 1"
     }
   },
-  "2":{
+  "2": {
     "type": "Minion",
     "attack": 3,
     "health": 6,
     "mana": 4,
-    "name": "2",
+    "name": "diff",
     "text": "Card 2",
     "cardClass": "MAGE",
     "set": "Basic",

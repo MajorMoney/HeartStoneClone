@@ -1,4 +1,3 @@
 package GameObjects.Cards.CardInterfaces;
 
-public interface IForgeable {
-}
+public interface IForgeable {}

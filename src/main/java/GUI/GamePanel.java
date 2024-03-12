@@ -2,12 +2,9 @@ package GUI;
 
 import Game.GameState;
 import Game.MouseHandler;
-import GameObjects.Cards.Card;
 import PlayerActions.PlayerDraggableAction;
-
-import javax.swing.*;
 import java.awt.*;
-
+import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable{
 

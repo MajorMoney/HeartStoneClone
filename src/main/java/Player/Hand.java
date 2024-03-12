@@ -1,8 +1,6 @@
 package Player;
 
 import GameObjects.Cards.Card;
-import GameObjects.Cards.CardProperties;
-
 import java.util.ArrayList;
 
 public class Hand {

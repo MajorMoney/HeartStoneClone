@@ -5,7 +5,7 @@ import GameObjects.Cards.CardProperties;
 
 public class ForgeableMinion extends Minion implements IForgeable {
 
-    public ForgeableMinion(int x, int y, int width, int height, CardProperties cp) {
-        super(x, y, width, height, cp);
-    }
+  public ForgeableMinion(int x, int y, int width, int height, CardProperties cp) {
+    super(x, y, width, height, cp);
+  }
 }

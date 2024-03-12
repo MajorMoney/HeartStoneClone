@@ -1,7 +1,6 @@
 package Game;
 import GUI.BoardBackground;
 import GUI.GamePanel;
-
 import javax.swing.*;
 
 public class GameStart {

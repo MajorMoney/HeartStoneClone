@@ -1,4 +1,3 @@
 package GameObjects.Cards;
 
-public interface ISummonable {
-}
+public interface ISummonable {}

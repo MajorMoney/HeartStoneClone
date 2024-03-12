@@ -1,4 +1,3 @@
 package GameObjects.Cards.Effects;
 
-public class Effect {
-}
+public class Effect {}

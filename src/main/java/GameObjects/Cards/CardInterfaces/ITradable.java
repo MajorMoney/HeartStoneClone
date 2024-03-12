@@ -1,4 +1,3 @@
 package GameObjects.Cards.CardInterfaces;
 
-public interface ITradable {
-}
+public interface ITradable {}

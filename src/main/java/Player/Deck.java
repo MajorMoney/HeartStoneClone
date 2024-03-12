@@ -1,12 +1,9 @@
 package Player;
 
 import GameObjects.Cards.Card;
-import GameObjects.Cards.Card;
 import GameObjects.Cards.CardProperties;
 import GameObjects.Cards.CardPropertiesImporter;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Deck {

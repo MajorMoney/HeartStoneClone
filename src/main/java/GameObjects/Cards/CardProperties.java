@@ -3,7 +3,6 @@ package GameObjects.Cards;
 import GameObjects.Cards.Effects.Effect;
 import lombok.Data;
 
-
 @Data
 public class CardProperties {
 

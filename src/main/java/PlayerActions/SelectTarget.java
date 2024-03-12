@@ -4,18 +4,13 @@ import PlayerActions.PlayerDraggableAction;
 
 public class SelectTarget extends PlayerDraggableAction {
 
-    public SelectTarget(){
+  public SelectTarget() {}
 
-    }
+  @Override
+  public boolean validate() {
+    return false;
+  }
 
-
-    @Override
-    public boolean validate() {
-        return false;
-    }
-
-    @Override
-    public void resolve(boolean valid) {
-
-    }
+  @Override
+  public void resolve(boolean valid) {}
 }
